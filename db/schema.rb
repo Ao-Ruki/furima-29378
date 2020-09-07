@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_071909) do
 
   create_table "destinations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "postcode", null: false
-    t.integer "prefecture", null: false
+    t.integer "prefecture_id", null: false
     t.string "city", null: false
     t.string "address", null: false
     t.string "building_name"
@@ -27,16 +27,13 @@ ActiveRecord::Schema.define(version: 2020_09_07_071909) do
     t.string "name", null: false
     t.text "description", null: false
     t.integer "price", null: false
-    t.integer "category", null: false
-    t.integer "item_condition", null: false
-    t.integer "postage_player", null: false
-    t.integer "prefecture", null: false
-    t.bigint "preparation_day_id", null: false
+    t.integer "category_id", null: false
+    t.integer "item_condition_id", null: false
+    t.integer "postage_player_id", null: false
+    t.integer "prefecture_id", null: false
+    t.integer "preparation_day_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
-    t.index ["preparation_day_id"], name: "index_items_on_preparation_day_id"
-    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "transactions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -44,11 +41,16 @@ ActiveRecord::Schema.define(version: 2020_09_07_071909) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.bigint "item_id"
+    t.bigint "destination_id"
+    t.index ["destination_id"], name: "index_transactions_on_destination_id"
     t.index ["item_id"], name: "index_transactions_on_item_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "nickname", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
     t.string "family_name", null: false
     t.string "first_name", null: false
     t.string "family_name_kana", null: false
@@ -58,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_071909) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "items", "users"
+  add_foreign_key "transactions", "destinations"
   add_foreign_key "transactions", "items"
   add_foreign_key "transactions", "users"
 end

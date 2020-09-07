@@ -5,4 +5,5 @@ class UserTest < ActiveSupport::TestCase
   #   assert true
   # end
   has_many :item dependent: :destroy
+  has_one :transaction dependent: :destroy
 end
