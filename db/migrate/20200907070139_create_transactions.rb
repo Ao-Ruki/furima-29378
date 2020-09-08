@@ -1,6 +1,6 @@
 class CreateTransactions < ActiveRecord::Migration[6.0]
   def change
-    create_table :transactions do |t|
+    create_table :item_purchases do |t|
 
       t.timestamps
     end

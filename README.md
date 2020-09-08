@@ -45,17 +45,17 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column             | Type       | Options     |
-| ------------------ | ---------- | ----------- |
-| name               | string     | null: false |
-| description        | text       | null: false |
-| price              | integer    | null: false |
-| category_id        | integer    | null: false |
-| item_condition_id  | integer    | null: false |
-| postage_player_id  | integer    | null: false |
-| prefecture_id      | integer    | null: false |
-| preparation_day_id | integer    | null: false |
-| user               | references | null: false |
+| Column             | Type       | Options                       |
+| ------------------ | ---------- | ----------------------------- |
+| name               | string     | null: false                   |
+| description        | text       | null: false                   |
+| price              | integer    | null: false                   |
+| category_id        | integer    | null: false,foreign_key: true |
+| item_condition_id  | integer    | null: false,foreign_key: true |
+| postage_player_id  | integer    | null: false,foreign_key: true |
+| prefecture_id      | integer    | null: false,foreign_key: true |
+| preparation_day_id | integer    | null: false,foreign_key: true |
+| user               | references | null: false,foreign_key: true |
 
 ### Association
 
@@ -85,10 +85,10 @@ Things you may want to cover:
 
 ## Transactions テーブル
 
-| Column             | Type       | Options     |
-| ------------------ | ---------- | ----------- |
-| user               | references | null: false |
-| item               | references | null: false |
+| Column             | Type       | Options                       |
+| ------------------ | ---------- | ----------------------------- |
+| user               | references | null: false,foreign_key: true |
+| item               | references | null: false,foreign_key: true |
 
 ### Association
 

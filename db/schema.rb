@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 2020_09_08_003226) do
     t.index ["user_id"], name: "index_destinations_on_user_id"
   end
 
+  create_table "item_purchases", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.bigint "item_id"
+    t.index ["item_id"], name: "index_item_purchases_on_item_id"
+    t.index ["user_id"], name: "index_item_purchases_on_user_id"
+  end
+
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.text "description", null: false
@@ -36,17 +45,8 @@ ActiveRecord::Schema.define(version: 2020_09_08_003226) do
     t.integer "preparation_day_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "transactions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "destination_id"
     t.bigint "user_id"
-    t.bigint "item_id"
-    t.index ["destination_id"], name: "index_transactions_on_destination_id"
-    t.index ["item_id"], name: "index_transactions_on_item_id"
-    t.index ["user_id"], name: "index_transactions_on_user_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_003226) do
   end
 
   add_foreign_key "destinations", "users"
-  add_foreign_key "transactions", "destinations"
-  add_foreign_key "transactions", "items"
-  add_foreign_key "transactions", "users"
+  add_foreign_key "item_purchases", "items"
+  add_foreign_key "item_purchases", "users"
+  add_foreign_key "items", "users"
 end
