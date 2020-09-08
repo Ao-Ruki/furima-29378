@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_07_071909) do
+ActiveRecord::Schema.define(version: 2020_09_08_003226) do
 
   create_table "destinations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "postcode", null: false
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2020_09_07_071909) do
     t.string "phone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_destinations_on_user_id"
   end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -39,9 +41,9 @@ ActiveRecord::Schema.define(version: 2020_09_07_071909) do
   create_table "transactions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "destination_id"
     t.bigint "user_id"
     t.bigint "item_id"
-    t.bigint "destination_id"
     t.index ["destination_id"], name: "index_transactions_on_destination_id"
     t.index ["item_id"], name: "index_transactions_on_item_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
@@ -60,6 +62,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_071909) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "destinations", "users"
   add_foreign_key "transactions", "destinations"
   add_foreign_key "transactions", "items"
   add_foreign_key "transactions", "users"

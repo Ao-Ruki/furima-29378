@@ -6,5 +6,5 @@ class TransactionTest < ActiveSupport::TestCase
   # end
   belongs_to :user dependent: :destroy
   belongs_to :item dependent: :destroy
-  belongs_to :destination dependent: :destroy
+  has_one :destination dependent: :destroy
 end

@@ -5,6 +5,6 @@ class DestinationTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
-  has_one :transaction dependent: :destroy
+  belongs_to :transaction dependent: :destroy
   belongs_to_active_hash :prefecture
 end

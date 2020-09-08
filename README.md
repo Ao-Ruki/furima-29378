@@ -41,7 +41,7 @@ Things you may want to cover:
 ### Association
 
 - has_many :item dependent: :destroy
-- has_one :transaction dependent: :destroy
+- has_many :transaction dependent: :destroy
 
 ## items テーブル
 
@@ -77,10 +77,10 @@ Things you may want to cover:
 | address            | string     | null: false |
 | building_name      | string     |             |
 | phone_number       | string     | null: false |
-
+| user               | references | null: false |
 ### Association
 
-- has_one :transaction dependent: :destroy
+- belongs_to :transaction dependent: :destroy
 - belongs_to_active_hash :prefecture
 
 ## Transactions テーブル
@@ -89,10 +89,9 @@ Things you may want to cover:
 | ------------------ | ---------- | ----------- |
 | user               | references | null: false |
 | item               | references | null: false |
-| destination        | references | null: false |
 
 ### Association
 
 - belongs_to :user dependent: :destroy
 - belongs_to :item dependent: :destroy
-- belongs_to :destination dependent: :destroy
+- has_one :destination dependent: :destroy
