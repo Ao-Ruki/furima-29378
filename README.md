@@ -83,7 +83,7 @@ Things you may want to cover:
 - belongs_to :transaction dependent: :destroy
 - belongs_to_active_hash :prefecture
 
-## Transactions テーブル
+## item_item_purchases  テーブル
 
 | Column             | Type       | Options                       |
 | ------------------ | ---------- | ----------------------------- |
