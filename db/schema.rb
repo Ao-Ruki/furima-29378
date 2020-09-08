@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2020_09_08_003226) do
     t.string "first_name", null: false
     t.string "family_name_kana", null: false
     t.string "first_name_kana", null: false
-    t.date "birth_day", null: false
+    t.date "birthday", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
