@@ -11,26 +11,6 @@ describe Item do
         expect(@item).to be_valid
       end
       
-      it "nameが40文字以下で保存できる" do
-        @item.name = "レモン"
-        expect(@item).to be_valid
-      end
-
-      it "descriptionが1000文字以下で保存できる" do
-        @item.description = "美味しい"
-        expect(@item).to be_valid
-      end
-
-      it "priceが300円以上9999999円以下であれば保存できる" do
-        @item.price = 333
-        expect(@item).to be_valid
-        end
-
-      it "priceが半角数字であれば保存できる" do
-        @item.price = 333
-        expect(@item).to be_valid
-        end
-
     context '商品保存がうまくいかないとき' do
 
      it "nameが空だと保存できない" do
@@ -109,9 +89,7 @@ describe Item do
       expect(@item.errors.full_messages).to include("Preparation day Select")
     end
   
-       end
-  
-      end
     end
-      
-  end
+    end
+    end
+    end
