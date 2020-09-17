@@ -10,7 +10,8 @@ describe Item do
       it "image、name、description、category_id、pricecategory_id、item_condition_id、postage_player_id、prefecture_id、preparation_day_idが存在すれば登録できる" do
         expect(@item).to be_valid
       end
-      
+    end
+
     context '商品保存がうまくいかないとき' do
 
      it "nameが空だと保存できない" do
@@ -41,13 +42,13 @@ describe Item do
      expect(@item.errors.full_messages).to include("Price can't be blank")
      end
 
-     it "priceが300円以下だと保存できない" do
+     it "priceが300より小さい場合は保存できない" do
      @item.price = 30
      @item.valid?
      expect(@item.errors.full_messages).to include("Price Out of setting range")
     end
 
-    it "priceが99999999円以上だと保存できない" do
+    it "priceが9999999より大きい場合は保存できない" do
       @item.price = 99999999999
       @item.valid?
       expect(@item.errors.full_messages).to include("Price Out of setting range")
@@ -88,8 +89,6 @@ describe Item do
       @item.valid?
       expect(@item.errors.full_messages).to include("Preparation day Select")
     end
-  
     end
-    end
-    end
-    end
+  end
+end
