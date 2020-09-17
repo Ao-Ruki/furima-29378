@@ -9,8 +9,8 @@ with_options presence: true do
   validates :birthday
   validates :family_name, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'Full-width characters' }
   validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'Full-width characters' }
-  validates :family_name_kana, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'Full-width katakana characters' }
-  validates :first_name_kana, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'Full-width katakana characters' }
+  validates :family_name_kana, format: { with: /\A([ァ-ン]|ー)+\z/, message: 'Full-width katakana characters' }
+  validates :first_name_kana, format: { with: /\A([ァ-ン]|ー)+\z/, message: 'Full-width katakana characters' }
 end
 
 validates :password,length: { minimum: 6 }
