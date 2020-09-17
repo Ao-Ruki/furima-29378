@@ -51,7 +51,7 @@ describe Item do
      end
 
      it "descriptionが1000文字以上であれば保存できない" do
-     @item.name = 1001
+     @item.description = 1001
      @item.valid?
      end
   
@@ -67,8 +67,8 @@ describe Item do
      expect(@item.errors.full_messages).to include("Price Out of setting range")
     end
 
-    it "priceが9999999円以上だと保存できない" do
-      @item.price = 999999999
+    it "priceが99999999円以上だと保存できない" do
+      @item.price = 99999999999
       @item.valid?
       expect(@item.errors.full_messages).to include("Price Out of setting range")
     end
@@ -79,32 +79,32 @@ describe Item do
       expect(@item.errors.full_messages).to include("Price Half-width number")
     end
   
-    it "category_idが空だと保存できない" do
-      @item.category_id = ''
+    it "category_idが1の場合は保存できない" do
+      @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Category Select")
     end
   
-    it "item_condition_idが空だと保存できない" do
-      @item.item_condition_id = ''
+    it "item_condition_idが空1の場合は保存できない" do
+      @item.item_condition_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Item condition Select")
     end
   
-    it "postage_player_idが空だと保存できない" do
-      @item.postage_player_id = ''
+    it "postage_player_idが1の場合は保存できない" do
+      @item.postage_player_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Postage player Select")
     end
   
-    it "prefecture_idが空だと保存できない" do
-      @item.prefecture_id = ''
+    it "prefecture_idが1の場合は保存できない" do
+      @item.prefecture_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Prefecture Select")
     end
   
-    it "preparation_day_idが空だと保存できない" do
-      @item.preparation_day_id = ''
+    it "preparation_day_idが1の場合は保存できない" do
+      @item.preparation_day_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Preparation day Select")
     end
