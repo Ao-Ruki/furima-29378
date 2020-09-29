@@ -7,7 +7,8 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :preparation_day
   has_one_attached :image
-  
+  belongs_to :user 
+  has_one :item_purchases
 
  validates :image,:name, :description, :price, presence: true
  validates :price, numericality: { only_integer: true, message: 'Half-width number' }
