@@ -42,7 +42,9 @@ ActiveRecord::Schema.define(version: 2020_09_15_100058) do
     t.string "phone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "item_purchases_id"
     t.bigint "user_id"
+    t.index ["item_purchases_id"], name: "index_destinations_on_item_purchases_id"
     t.index ["user_id"], name: "index_destinations_on_user_id"
   end
 
@@ -89,6 +91,7 @@ ActiveRecord::Schema.define(version: 2020_09_15_100058) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "destinations", "item_purchases", column: "item_purchases_id"
   add_foreign_key "destinations", "users"
   add_foreign_key "item_purchases", "items"
   add_foreign_key "item_purchases", "users"
